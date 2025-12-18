@@ -1,0 +1,29 @@
+﻿# Ignore local development settings
+local.settings.json
+
+# Ignore build outputs
+bin/
+obj/
+
+# Ignore test projects and artifacts
+*.Tests/
+*.testsettings
+*.trx
+
+# Ignore logs and temp files
+*.log
+*.tmp
+
+# Ignore markdown/docs
+*.md
+docs/
+
+# Ignore IDE/editor configs
+.vscode/
+.idea/
+*.user
+*.suo
+
+# Ignore git metadata
+.git/
+.gitignore
