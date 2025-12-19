@@ -43,7 +43,7 @@ jobs:
         uses: Azure/functions-action@v1
         with:
           app-name: ${{ env.AZURE_FUNCTIONAPP_NAME }}
-          package: ${{ AZURE_FUNCTIONAPP_DIRECTORY }}
+          package: ${{ env.AZURE_FUNCTIONAPP_DIRECTORY }}
           remote-build: true
           enable-oryx-build: true
           respect-funcignore: true
