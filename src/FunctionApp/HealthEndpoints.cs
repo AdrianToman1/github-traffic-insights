@@ -8,7 +8,7 @@ namespace FunctionApp;
 
 public static class HealthEndpoints
 {
-    [Function("Alive")]
+    [Function(nameof(Alive))]
     public static async Task<HttpResponseData> Alive(
         [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "alive")]
         HttpRequestData request,
@@ -19,7 +19,7 @@ public static class HealthEndpoints
         return response;
     }
 
-    [Function("Health")]
+    [Function(nameof(Health))]
     public static async Task<HttpResponseData> Health(
         [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "health")]
         HttpRequestData request,

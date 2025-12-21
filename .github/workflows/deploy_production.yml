@@ -1,0 +1,53 @@
+name: Deploy GitHub Traffic Insights Function App
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+permissions:
+  id-token: write
+  contents: read
+
+env:
+  PROJECT_DIR: src/FunctionApp
+  PROJECT_FILE: src/FunctionApp/FunctionApp.csproj
+  DOTNET_VERSION: 10.0.x
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: ${{ env.DOTNET_VERSION }}
+
+    - name: Restore dependencies
+      run: dotnet restore ${{ env.PROJECT_FILE }}
+
+    - name: Build
+      run: dotnet build ${{ env.PROJECT_FILE }} -c Release --no-restore
+
+    - name: Publish
+      run: dotnet publish ${{ env.PROJECT_FILE }} -c Release -o ./publish
+
+    - name: Azure Login (OIDC)
+      uses: azure/login@v2
+      with:
+        client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_9DCEB55AB6B441C78553BB4BD007CAB5 }}
+        tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_B402038396B544D8A629C71FD3F494CA }}
+        subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_9344EBBCF4B647218A2358DE1DDE1E03 }}
+
+    - name: Deploy to Azure Function App
+      uses: Azure/functions-action@v1
+      with:
+        app-name: github-traffic-insights
+        package: ./publish
+        remote-build: false
+        enable-oryx-build: false
+        respect-funcignore: true
