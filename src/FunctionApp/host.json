@@ -7,5 +7,10 @@
                 "Host.General": "Warning"
             }
         }
+    },
+    "extensions": {
+        "http": {
+            "routePrefix": ""
+        }
     }
 }
