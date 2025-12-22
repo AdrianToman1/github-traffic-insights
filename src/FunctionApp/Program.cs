@@ -1,4 +1,5 @@
 using Azure.Monitor.OpenTelemetry.Exporter;
+using FunctionApp.Services;
 using Microsoft.Azure.Functions.Worker.Builder;
 using Microsoft.Azure.Functions.Worker.OpenTelemetry;
 using Microsoft.Extensions.DependencyInjection;
@@ -9,6 +10,8 @@ var builder = FunctionsApplication.CreateBuilder(args);
 builder.AddServiceDefaults();
 
 builder.ConfigureFunctionsWebApplication();
+
+builder.Services.AddScoped<ITrafficIngestionService, TrafficIngestionService>();
 
 builder.Services.AddOpenTelemetry()
     .UseFunctionsWorkerDefaults()
