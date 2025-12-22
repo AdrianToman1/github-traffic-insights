@@ -1,5 +1,9 @@
+using Projects;
+
 var builder = DistributedApplication.CreateBuilder(args);
 
-builder.AddAzureFunctionsProject<Projects.FunctionApp>("functionapp");
+builder.AddAzureFunctionsProject<FunctionApp>(nameof(FunctionApp))
+    .WithEnvironment("TrafficIngestion__Schedule", "0 */5 * * * *")
+    .WithHttpCommand("/ManualTrigger", "Run Ingestion Now");
 
 builder.Build().Run();

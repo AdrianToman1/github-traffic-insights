@@ -1,9 +1,9 @@
 {
-  "profiles": {
-    "FunctionApp": {
-      "commandName": "Project",
-      "commandLineArgs": "--port 7285",
-      "launchBrowser": false
+    "profiles": {
+        "FunctionApp": {
+            "commandName": "Project",
+            "commandLineArgs": "--port 7285",
+            "launchBrowser": false
+        }
     }
-  }
 }

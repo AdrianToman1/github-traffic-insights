@@ -4,9 +4,9 @@ using Microsoft.Azure.Functions.Worker.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 
-namespace FunctionApp;
+namespace FunctionApp.Functions;
 
-public static class HealthEndpoints
+public static class HealthCheck
 {
     [Function(nameof(Alive))]
     public static async Task<HttpResponseData> Alive(

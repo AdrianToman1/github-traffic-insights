@@ -1,8 +1,8 @@
 {
     "IsEncrypted": false,
     "Values": {
-        "AzureWebJobsStorage": "",
         "FUNCTIONS_EXTENSION_VERSION": "~4",
-        "APPLICATIONINSIGHTS_CONNECTION_STRING": "InstrumentationKey=00000000-0000-0000-0000-000000000000"
+        "APPLICATIONINSIGHTS_CONNECTION_STRING": "InstrumentationKey=00000000-0000-0000-0000-000000000000",
+        "TrafficIngestion__Schedule": "0 */5 * * * *"
     }
 }
