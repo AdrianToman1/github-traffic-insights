@@ -10,6 +10,7 @@ permissions:
   contents: read
 
 env:
+  PROJECT_NAME: github-traffic-insights
   PROJECT_DIR: src/FunctionApp
   PROJECT_FILE: src/FunctionApp/FunctionApp.csproj
   DOTNET_VERSION: 10.0.x
@@ -44,15 +45,19 @@ jobs:
         subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_D4AE0D334A24434FA5566417532A829F }}
 
     - name: Deploy to Azure Function App
-      uses: Azure/functions-action@v1
+      uses: azure/functions-action@v1
       with:
-        app-name: github-traffic-insights
+        app-name: ${{ env.PROJECT_NAME }}
         package: ./publish
         remote-build: false
         enable-oryx-build: false
         respect-funcignore: true
+      
+    - name: Configure App Settings
+      uses: azure/appservice-settings@v1
+      with:
+        app-name: ${{ env.PROJECT_NAME }}
         app-settings-json: | 
           { 
             "TrafficIngestion__Schedule": "0 0 * * * *"
           }
-            
