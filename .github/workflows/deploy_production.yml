@@ -54,7 +54,9 @@ jobs:
         respect-funcignore: true
       
     - name: Configure App Settings
-      uses: azure/appservice-settings@v1
-      with:
-        app-name: ${{ env.PROJECT_NAME }}
-        app-settings-json: '{"TrafficIngestion__Schedule":"0 0 * * * *"}'
+      shell: bash
+      run: |
+        az functionapp config appsettings set \
+          --name ${{ env.PROJECT_NAME }} \
+          --resource-group ${{ env.PROJECT_NAME }} \
+          --settings "TrafficIngestion__Schedule=0 0 * * * *"
