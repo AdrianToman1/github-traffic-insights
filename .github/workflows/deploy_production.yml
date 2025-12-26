@@ -59,4 +59,4 @@ jobs:
         az functionapp config appsettings set \
           --name ${{ env.PROJECT_NAME }} \
           --resource-group ${{ env.PROJECT_NAME }} \
-          --settings "TrafficIngestion__Schedule=0 0 * * * *"
+          --settings "TrafficIngestion__Schedule=0 0 0 * * *"
