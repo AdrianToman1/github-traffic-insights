@@ -2,4 +2,5 @@
   <Project Path="AppHost/AppHost.csproj" />
   <Project Path="src/FunctionApp/FunctionApp.csproj" />
   <Project Path="src/ServiceDefaults/ServiceDefaults.csproj" />
+  <Project Path="tests/FunctionApp.IntegrationTests/FunctionApp.IntegrationTests.csproj" Id="78b8cccb-f377-43ff-ab76-c59376c3edbb" />
 </Solution>
