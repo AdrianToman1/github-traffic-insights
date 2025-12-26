@@ -7,7 +7,6 @@ public class ManualTriggerTest
     private static readonly TimeSpan DefaultTimeout = TimeSpan.FromSeconds(30);
 
     [Fact]
-    [Trait("Category", "Integration")]
     public async Task ReturnsNoContentStatusCode()
     {
         // Arrange
