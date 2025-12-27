@@ -37,7 +37,7 @@ jobs:
     - name: Run unit tests 
       run: dotnet test tests/FunctionApp.UnitTests \
         -c Release \
-        --no-build \ 
+        --no-build \
         --logger "trx;LogFileName=test_results.trx" \
         --results-directory ./test-results
         
