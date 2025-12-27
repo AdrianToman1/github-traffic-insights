@@ -3,4 +3,5 @@
   <Project Path="src/FunctionApp/FunctionApp.csproj" />
   <Project Path="src/ServiceDefaults/ServiceDefaults.csproj" />
   <Project Path="tests/FunctionApp.IntegrationTests/FunctionApp.IntegrationTests.csproj" Id="78b8cccb-f377-43ff-ab76-c59376c3edbb" />
+  <Project Path="tests/FunctionApp.UnitTests/FunctionApp.UnitTests.csproj" Id="7e775802-dcc5-4512-bfd9-4291a96c94c6" />
 </Solution>

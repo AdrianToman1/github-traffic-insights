@@ -34,9 +34,8 @@ jobs:
     - name: Build
       run: dotnet build -c Release --no-restore
 
-    # fails when there are no tests
-    #- name: Run tests (excluding integration tests)
-    #  run: dotnet test -c Release --no-build --verbosity normal -- --filter-not-trait "Category=Integration"
+    - name: Run unit tests 
+      run: dotnet test -c Release --no-build --verbosity normal tests/FunctionApp.UnitTests
 
     - name: Publish
       run: dotnet publish ${{ env.PROJECT_FILE }} -c Release -o ./publish
