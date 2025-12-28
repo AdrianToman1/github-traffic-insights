@@ -28,6 +28,7 @@ jobs:
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: ${{ env.DOTNET_VERSION }}
+        cache: true
 
     - name: Restore dependencies
       run: dotnet restore
@@ -54,7 +55,7 @@ jobs:
       if: always()
       uses: dorny/test-reporter@v1
       with: 
-        name: Unit Tests
+        name: unit tests
         path: test-results/*.trx
         reporter: dotnet-trx
 
