@@ -8,6 +8,7 @@ on:
 permissions:
   id-token: write
   contents: read
+  checks: write
 
 env:
   PROJECT_NAME: github-traffic-insights
