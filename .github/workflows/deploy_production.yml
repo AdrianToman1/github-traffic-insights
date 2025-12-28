@@ -29,9 +29,10 @@ jobs:
       with:
         dotnet-version: ${{ env.DOTNET_VERSION }}
         cache: true
+        cache-dependency-path: '**/packages.lock.json'
 
     - name: Restore dependencies
-      run: dotnet restore --use-lock-file
+      run: dotnet restore
 
     - name: Build
       run: dotnet build -c Release --no-restore
