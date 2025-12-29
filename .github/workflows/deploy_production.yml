@@ -67,9 +67,9 @@ jobs:
     - name: Azure Login (OIDC)
       uses: azure/login@v2
       with:
-        client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_CB97F8A622E848EA9EDD9801F0989D60 }}
-        tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_3B60A5C1EE21469395F2E0C06DBA719D }}
-        subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_D4AE0D334A24434FA5566417532A829F }}
+        client-id: ${{ secrets.AZURE_CLIENT_ID }}
+        tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+        subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
 
     - name: Deploy to Azure Function App
       uses: azure/functions-action@v1
