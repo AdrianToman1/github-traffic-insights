@@ -1,25 +1,19 @@
-name: Deploy GitHub Traffic Insights Function App
+name: CI
 
 on:
+  pull_request:
   push:
     branches: [ "main" ]
-  workflow_dispatch:
 
 permissions:
-  id-token: write
   contents: read
-  checks: write
 
 env:
-  PROJECT_NAME: github-traffic-insights
-  PROJECT_DIR: src/FunctionApp
-  PROJECT_FILE: src/FunctionApp/FunctionApp.csproj
   DOTNET_VERSION: 10.0.x
 
 jobs:
-  deploy:
+  build-and-test:
     runs-on: ubuntu-latest
-    environment: production
 
     steps:
     - name: Checkout repository
@@ -60,30 +54,3 @@ jobs:
         name: unit tests
         path: test-results/*.trx
         reporter: dotnet-trx
-
-    - name: Publish
-      run: dotnet publish ${{ env.PROJECT_FILE }} -c Release -o ./publish
-
-    - name: Azure Login (OIDC)
-      uses: azure/login@v2
-      with:
-        client-id: ${{ secrets.AZURE_CLIENT_ID }}
-        tenant-id: ${{ secrets.AZURE_TENANT_ID }}
-        subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-
-    - name: Deploy to Azure Function App
-      uses: azure/functions-action@v1
-      with:
-        app-name: ${{ env.PROJECT_NAME }}
-        package: ./publish
-        remote-build: false
-        enable-oryx-build: false
-        respect-funcignore: true
-      
-    - name: Configure App Settings
-      shell: bash
-      run: |
-        az functionapp config appsettings set \
-          --name ${{ env.PROJECT_NAME }} \
-          --resource-group ${{ env.PROJECT_NAME }} \
-          --settings "TrafficIngestion__Schedule=0 0 0 * * *"
